@@ -5,7 +5,7 @@ Webcam.set({
     png_quality:90,
 });
 Webcam.attach('#camera');
-function click(){
+function clicky(){
     Webcam.snap(function(data_uri){
     document.getElementById("result").innerHTML='<img id="captured_image" src="'+data_uri+'"/>';
 
@@ -17,8 +17,9 @@ function modelloaded(){
     console.log('ml5 version',ml5.version);
 }
 function check(){
-    var check=document.getElementById('capture_image');
-    classfier.classify(check , gotResult);
+    console.log("working");
+     pic=document.getElementById('capture_image');
+    classfier.classify(pic , gotResult);
 }
 function gotResult(error, result){
     if(error){
@@ -30,6 +31,23 @@ function gotResult(error, result){
         prediction2=result[1].label;
         document.getElementById("result_emotion_name").innerHTML=prediction1;
         document.getElementById("result_emotion_name2").innerHTML=prediction2;
-
+if(prediction1=="happy"){
+    document.getElementById("update_emoji").innerHTML="&#128522;";
+}
+if(prediction1=="sad"){
+    document.getElementById("update_emoji").innerHTML="&#128532;";
+}
+if(prediction1=="angry"){
+    document.getElementById("update_emoji").innerHTML="&#128548;";
+}
+if(prediction2=="happy"){
+    document.getElementById("update_emoji2").innerHTML="&#128522;";
+}
+if(prediction2=="sad"){
+    document.getElementById("update_emoji2").innerHTML="&#128532;";
+}
+if(prediction2=="angry"){
+    document.getElementById("update_emoji2").innerHTML="&#128548;";
+}
     }
 }
